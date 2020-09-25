@@ -26,7 +26,7 @@ export default {
   mounted() {
     console.log(1111);
     axios({
-      url: "/api/auto",
+      url: "http://47.103.47.65:9001/api/auto",
       headers: { token: "1234567890123456" },
     }).then((res) => {
    

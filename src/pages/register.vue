@@ -33,7 +33,7 @@ export default {
   methods:{
     reg(){
        axios({
-         url:'/api/reg',
+         url:'http://47.103.47.65:9001/api/reg',
           method:'post',
           data:{
             username:this.username,

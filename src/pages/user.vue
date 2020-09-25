@@ -54,13 +54,11 @@ export default {
   },
   beforeRouteEnter(to,from,next){
       axios({
-        url:'/api/user',
+        url:'http://47.103.47.65:9001/api/user',
         headers:{token:'1234567890123456'}
       }).then(
         // res => res.data.err === 0 ? next(_this=>_this.user = res.data.data) : next('/login')
         res => {
-          console.log(555);
-         console.log(res);
           if(res.data.err === 0) {
             to.query.user = res.data
             next()
@@ -77,23 +75,7 @@ export default {
         this.$router.push('/login')
       }
     }
-  //  beforeRouteEnter(to,from,next){
-  //     axios({
-  //       url:'/api/user',
-  //        headers:{token:'1234567890123456'}
-  //     }).then(
-  //       // res => res.data.err === 0 ? next(_this=>_this.user = res.data.data) : next('/login')
-  //       res => {
-  //         if(res.data.err === 0) {
-  //           to.query.user = res.data.data
-  //           next()
-  //         }else{
-  //           next('/login')
-  //         }
-  //       }
-  //     )
-  //   },
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     axios({
-      url: "/api/banner",
+      url: "http://47.103.47.65:9001/api/banner",
       headers:{token:'1234567890123456'},
       params:{
         _limit:3,_page:1

@@ -28,7 +28,7 @@ export default {
   },
   mounted() {
     axios({
-      url: "/api/book",
+      url: "http://47.103.47.65:9001/api/book",
       headers: { token: "1234567890123456" },
     }).then((res) => {
     //   console.log(res.data.data);

@@ -32,7 +32,7 @@ export default {
     login(){
       console.log(111);
        axios({
-      url:'/api/login',
+      url:'http://47.103.47.65:9001/api/login',
       method:'post',
       data:{
           username:this.username,
@@ -44,7 +44,7 @@ export default {
               //种local  跳转到之前
               window.localStorage.setItem('user',JSON.stringify(res.data));
               if(!this.$route.query.p){
-                this.$router.push('/user')
+                this.$router.push('/author')
               }else{
                 this.$router.push(this.$route.query.p)
               }

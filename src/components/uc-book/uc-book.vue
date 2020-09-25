@@ -14,18 +14,30 @@ export default {
   name: "uc-book",
   data(){
     return{
-      list:[],
+      list:[]
 
     }
   },
-  mounted() {
-    axios({
-      url: "/api/book_one",
+  async mounted() {
+    let book =JSON.parse(window.localStorage.getItem('bookId'));
+    let a =  Object.keys(book);
+    
+    for await(let attr of a){
+      // console.log(attr);
+      axios({
+      url: "http://47.103.47.65:9001/api/book",
+      
+      params:{
+        gId:attr
+      },
       headers: { token: "1234567890123456" },
     }).then((res) => {
-      console.log(res.data.data);
-      this.list = res.data.data;
-    });
+      // console.log(res.data.data);
+      this.list=res.data.data;
+    })
+    }
+    
+   
   },
   props: {
     width: {

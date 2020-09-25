@@ -2,7 +2,7 @@
   <div class="detail">
     <uc-nav class="nav" />
     <div v-if="!value">
-      <heads class="heads" regRight="加入书架" v-on:click.native="changeRed" />
+      <heads class="heads" regRight="加入书架" v-on:click.native="changeRed(1)" />
       <van-rate
         class="enters"
         v-model="value"
@@ -78,15 +78,19 @@ export default {
     return {
       value: 0,
       values:0,
-      detail:[]
+      detail:[],
+      bId:'',
+      arr:[]
+
     };
   },
   mounted(){
       let _id = this.$route.params.id;
-        let collectionName=this.$route.name;
+      let collectionName=this.$route.name;
+       this.bId=_id;
         // console.log(collectionName);
       axios({
-        url:`/api/book`,
+        url:`http://47.103.47.65:9001/api/book`,
         params:{
            gId:_id
         },
@@ -98,8 +102,28 @@ export default {
       )
   },
   methods: {
-    changeRed() {
+    changeRed(bNum) {
+     
       this.value = 1;
+
+      let book = localStorage.getItem('bookId');
+      if(book){
+        let bId=this.bId;
+        book = JSON.parse(book);
+        book[bId] = 1;
+        localStorage.setItem('bookId', JSON.stringify(book))
+      }else{
+         // 3 没有数据就新增,保存商品id和数量
+      let book = { [this.bId]: bNum};
+      console.log(book);
+      // 3-1 转化为json进行存储
+      book = JSON.stringify(book);
+      localStorage.setItem('bookId', book)
+      }
+     
+
+    
+    
     },
     changeGray() {
       this.value = 0;
